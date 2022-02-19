@@ -1,0 +1,8 @@
+vendor
+node_modules
+
+.vscode
+.DS_*
+.idea
+*.log
+*.sublime*
