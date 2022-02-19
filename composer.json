@@ -6,6 +6,19 @@
 	"prefer-stable": true,
 	"type": "wordpress-plugin",
 	"license": "MIT",
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+		"wp-coding-standards/wpcs": "*",
+		"automattic/phpcs-neutron-ruleset": "^3.3",
+		"phpcompatibility/phpcompatibility-wp": "*"
+	},
+	"require": {
+		"php": ">=7.1"
+	},
+	"scripts": {
+		"cs": "phpcs --standard=phpcs.xml",
+		"cbf": "phpcbf --standard=phpcs.xml"
+	},
 	"authors": [
 		{
 			"name": "Denis Alemán",
