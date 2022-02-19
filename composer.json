@@ -6,6 +6,11 @@
 	"prefer-stable": true,
 	"type": "wordpress-plugin",
 	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Dekode\\": "src/"
+		}
+	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
 		"wp-coding-standards/wpcs": "*",
