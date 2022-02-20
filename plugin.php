@@ -27,15 +27,6 @@ const DEKODE_FNUGG_PLUGIN_FILE = __FILE__;
 $dekode_fnugg_autoloader = require plugin_dir_path( DEKODE_FNUGG_PLUGIN_FILE ) . 'vendor/autoload.php';
 
 /**
- * Setup hooks (activation, deactivation, uninstall)
- *
- * @since 0.0.0
- */
-register_activation_hook( __FILE__, [ 'DekodeGutenbergBlocks\Config\Setup', 'activation' ] );
-register_deactivation_hook( __FILE__, [ 'DekodeGutenbergBlocks\Config\Setup', 'deactivation' ] );
-register_uninstall_hook( __FILE__, [ 'DekodeGutenbergBlocks\Config\Setup', 'uninstall' ] );
-
-/**
  * Bootstrap the plugin
  *
  * @since 0.0.0
