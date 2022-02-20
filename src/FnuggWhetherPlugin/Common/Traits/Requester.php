@@ -97,7 +97,18 @@ trait Requester {
 	 * @since 0.0.0
 	 */
 	public function isRest(): bool {
-		return defined( 'REST_REQUEST' );
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST || isset( $_GET['rest_route'] ) && strpos( $_GET['rest_route'], '/', 0 ) === 0 ) {
+			return true;
+		}
+
+		global $wp_rewrite;
+		if ( $wp_rewrite === null ) {
+			$wp_rewrite = new \WP_Rewrite(); // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
+		}
+
+		$rest_url = wp_parse_url( trailingslashit( rest_url() ) );
+		$current_url = wp_parse_url( add_query_arg( [] ) );
+		return strpos( $current_url['path'], $rest_url['path'], 0 ) === 0;
 	}
 
 	/**
