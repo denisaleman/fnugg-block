@@ -7,6 +7,7 @@
  * Author:          Denis Alemán
  * License:         MIT
  * Text Domain:     gutenberg-fnugg-whether-block
+ * Namespace:       Dekode\FnuggWhetherPlugin
  */
 
 // Silence is golden.
