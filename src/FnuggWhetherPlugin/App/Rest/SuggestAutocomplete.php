@@ -13,6 +13,8 @@ declare( strict_types = 1 );
 
 namespace Dekode\FnuggWhetherPlugin\App\Rest;
 
+use Dekode\Fnugg;
+
 /**
  * Define `search` rest controller.
  *
@@ -70,18 +72,10 @@ class SuggestAutocomplete extends \WP_REST_Controller {
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_items( $request ) {
+		$query = $request->get_params();
 
-		$q = $request->get_params();
+		$content = ( new Fnugg\Api() )->suggestAutocomplete( $query );
 
-		$url    = add_query_arg( $q, 'https://api.fnugg.no' . '/suggest/autocomplete/' );
-		$result = wp_remote_get( $url );
-		$result = wp_remote_retrieve_body( $result );
-		$result = json_decode( $result, true );
-
-		if ( empty( $result ) ) {
-			return [];
-		}
-
-		return $result;
+		return $content;
 	}
 }

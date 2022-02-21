@@ -13,6 +13,8 @@ declare( strict_types = 1 );
 
 namespace Dekode\FnuggWhetherPlugin\App\Rest;
 
+use Dekode\Fnugg;
+
 /**
  * Define `search` rest controller.
  *
@@ -70,17 +72,10 @@ class Search extends \WP_REST_Controller {
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_items( $request ) {
-		$q = $request->get_params();
+		$query = $request->get_params();
 
-		$url    = add_query_arg( $q, 'https://api.fnugg.no' . '/search/' );
-		$result = wp_remote_get( $url );
-		$result = wp_remote_retrieve_body( $result );
-		$result = json_decode( $result, true );
+		$content = ( new Fnugg\Api() )->search( $query );
 
-		if ( empty( $result ) ) {
-			return [];
-		}
-
-		return $result;
+		return $content;
 	}
 }
