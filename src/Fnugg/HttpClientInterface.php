@@ -14,24 +14,11 @@ declare( strict_types = 1 );
 namespace Dekode\Fnugg;
 
 /**
- * HTTP Client Class sends request.
+ * HTTP Client Interface.
  *
  * @package Dekode\Fnugg
  * @since 0.0.0
  */
 interface HttpClientInterface {
-
-	/**
-	 * Performs HTTP request with GET method and returns its body.
-	 *
-	 * @param array $uri URI.
-	 *
-	 * @return HttpClient self.
-	 */
-	public function get( string $uri ): HttpClient {
-
-		$this->response = wp_remote_get( $uri );
-
-		return $this;
-	}
+	public function getRemoteBody( string $uri ): string;
 }

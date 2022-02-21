@@ -75,7 +75,8 @@ class SuggestAutocomplete extends \WP_REST_Controller {
 		$query = $request->get_params();
 
 		$client  = new Fnugg\HttpClient();
-		$api     = new Fnugg\Api( $client );
+		$proxy   = new Fnugg\CachingProxy( $client );
+		$api     = new Fnugg\Api( $proxy );
 		$content = $api->suggestAutocomplete( $query );
 
 		return $content;

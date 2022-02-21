@@ -13,13 +13,15 @@ declare( strict_types = 1 );
 
 namespace Dekode\Fnugg;
 
+use Dekode\Fnugg\HttpClientInterface;
+
 /**
  * HTTP Client Class sends request.
  *
  * @package Dekode\Fnugg
  * @since 0.0.0
  */
-class HttpClient {
+class HttpClient implements HttpClientInterface {
 
 	/**
 	 * Performs HTTP request with GET method and returns body of its response.

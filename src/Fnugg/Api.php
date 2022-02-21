@@ -13,6 +13,8 @@ declare( strict_types = 1 );
 
 namespace Dekode\Fnugg;
 
+use Dekode\Fnugg\HttpClientInterface;
+
 /**
  * Fnugg API Class.
  *
@@ -26,7 +28,7 @@ class Api {
 	 *
 	 * @return void
 	 */
-	public function __construct( $client ) {
+	public function __construct( HttpClientInterface $client ) {
 		$this->endpoints = [
 			'search'               => 'https://api.fnugg.no/search',
 			'suggest-autocomplete' => 'https://api.fnugg.no/suggest/autocomplete',
