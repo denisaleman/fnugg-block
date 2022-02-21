@@ -42,6 +42,7 @@ final class Plugin {
 			'plugin_path'            => untrailingslashit(
 				plugin_dir_path( DEKODE_FNUGG_PLUGIN_FILE )  // phpcs:disable ImportDetection.Imports.RequireImports.Symbol -- this constant is global
 			),
+			'plugin_blocks_folder'   => 'assets/blocks',
 			/**
 			 * Add extra data here
 			 */
@@ -75,6 +76,26 @@ final class Plugin {
 	 */
 	public function pluginPath(): string {
 		return $this->data()['plugin_path'];
+	}
+
+	/**
+	 * Get the plugin Gutenberg blocks path
+	 *
+	 * @return string
+	 * @since 0.0.0
+	 */
+	public function blocksPath(): string {
+		return $this->data()['plugin_path'] . '/' . $this->data()['plugin_blocks_folder'];
+	}
+
+	/**
+	 * Get the plugin Gutenberg blocks folder name
+	 *
+	 * @return string
+	 * @since 0.0.0
+	 */
+	public function blocksFolder(): string {
+		return $this->data()['plugin_blocks_folder'];
 	}
 
 	/**
