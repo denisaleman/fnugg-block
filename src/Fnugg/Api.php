@@ -26,11 +26,12 @@ class Api {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct( $client ) {
 		$this->endpoints = [
 			'search'               => 'https://api.fnugg.no/search',
 			'suggest-autocomplete' => 'https://api.fnugg.no/suggest/autocomplete',
 		];
+		$this->client = $client;
 	}
 
 	/**
@@ -41,15 +42,8 @@ class Api {
 	 * @return array Collection of suggestions.
 	 */
 	public function suggestAutocomplete( $query ): array {
-
 		$uri    = add_query_arg( $query, $this->endpoints['suggest-autocomplete'] );
-		$result = wp_remote_get( $uri );
-		$result = wp_remote_retrieve_body( $result );
-		$result = json_decode( $result, true );
-
-		if ( empty( $result ) ) {
-			return [];
-		}
+		$result = json_decode( $this->client->getRemoteBody( $uri ), true ) ?? [];
 
 		return $result;
 	}
@@ -62,15 +56,8 @@ class Api {
 	 * @return array Ski resort details.
 	 */
 	public function search( $query ): array {
-
 		$uri    = add_query_arg( $query, $this->endpoints['search'] );
-		$result = wp_remote_get( $uri );
-		$result = wp_remote_retrieve_body( $result );
-		$result = json_decode( $result, true );
-
-		if ( empty( $result ) ) {
-			return [];
-		}
+		$result = json_decode( $this->client->getRemoteBody( $uri ), true ) ?? [];
 
 		return $result;
 	}

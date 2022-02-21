@@ -74,7 +74,9 @@ class Search extends \WP_REST_Controller {
 	public function get_items( $request ) {
 		$query = $request->get_params();
 
-		$content = ( new Fnugg\Api() )->search( $query );
+		$client  = new Fnugg\HttpClient();
+		$api     = new Fnugg\Api( $client );
+		$content = $api->search( $query );
 
 		return $content;
 	}
