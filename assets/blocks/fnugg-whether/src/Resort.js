@@ -32,6 +32,10 @@ function Resort({
         return data;
     };
 
+    if ( ! data ) {
+        return '';
+    }
+
     let resort = destructureResortData( data );
 
     return ( <article {...useBlockProps.save()}>

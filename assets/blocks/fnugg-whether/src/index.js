@@ -74,6 +74,7 @@ registerBlockType( name, {
                     onChange={onChangeValue}
                     options={suggestions}
                 />
+                <Resort data={attributes?.resortData}/>
             </div>
         );
     },
