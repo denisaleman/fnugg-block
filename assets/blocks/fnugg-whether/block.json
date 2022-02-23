@@ -8,5 +8,16 @@
 	"category": "widgets",
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
-	"style": "file:./build/style-index.css"
+	"style": "file:./build/style-index.css",
+    "attributes": {
+        "value": {
+            "type": "string"
+        },
+        "isSelected": {
+            "type": "boolean"
+        },
+        "resortData": {
+            "type": "object"
+        }
+    }
 }
