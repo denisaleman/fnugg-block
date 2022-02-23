@@ -9,6 +9,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import json from '../block.json';
 import { __ } from '@wordpress/i18n';
 import Autocomplete from './autocomplete';
+import Resort from './Resort';
 import { useBlockProps } from '@wordpress/block-editor';
 import { loadResortSuggestions, loadResortData } from './api';
 import { useState } from '@wordpress/element';
@@ -78,31 +79,6 @@ registerBlockType( name, {
     },
 
     save: ({ attributes }) => {
-        const formatDate = ( dateStr ) => {
-            let d = new Date( dateStr );
-            return ( '0' + d.getDate() ).slice( -2 ) + '-' + ( '0' + ( d.getMonth() + 1 ) ).slice( -2 ) + '-' +
-                d.getFullYear() + ' ' + ( '0' + d.getHours() ).slice( -2 ) + ':' + ( '0' + d.getMinutes() ).slice( -2 );
-        };
-
-        return ( <article {...useBlockProps.save()}>
-            <header className="fnugg-header">
-                {attributes.resortData.name}
-            </header>
-            <main className="fnugg-resort-image">
-                <img src={attributes.resortData.images.image_1_1_l} />
-                <div className="fnugg-resort-image__desc">
-                    <div className="">{attributes.resortData.conditions.combined.top.condition_description}</div>
-                    <div className="">{__( 'Opdaterd', textdomain ) + ': ' + formatDate( attributes.resortData.last_updated )}</div>
-                </div>
-            </main>
-            <footer className="fnugg-conditions-grid">
-                <div className="fnugg-conditions-grid__cell">A</div>
-                <div className="fnugg-conditions-grid__cell fnugg-temperature">
-                    {attributes.resortData.conditions.combined.top.temperature.value + '°C'}
-                </div>
-                <div className="fnugg-conditions-grid__cell">C</div>
-                <div className="fnugg-conditions-grid__cell">D</div>
-            </footer>
-        </article> );
+        return <Resort data={attributes.resortData} />;
     }
 });
