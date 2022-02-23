@@ -10,7 +10,7 @@ import json from '../block.json';
 import { __ } from '@wordpress/i18n';
 import Autocomplete from './autocomplete';
 import { useBlockProps } from '@wordpress/block-editor';
-import apiFetch from '@wordpress/api-fetch';
+import { loadResortSuggestions, loadResortData } from './api';
 import { useState } from '@wordpress/element';
 
 import './editor.scss';
@@ -46,20 +46,6 @@ registerBlockType( name, {
                     func.apply( self, args );
                 }, delay );
             };
-        };
-
-        const loadResortSuggestions = async( search ) => {
-            return await apiFetch({ path: `/fnugg/v1/suggest-autocomplete?q=${search}` }).then( ( resp ) => {
-                return resp.result.map( ( item, index ) => {
-                    return { value: item.name, label: item.name, id: index };
-                });
-            });
-        };
-
-        const loadResortData = async( search ) => {
-            return await apiFetch({ path: `/fnugg/v1/search?q=${search}` }).then( ( resp ) => {
-                return ( 0 < resp.hits.total ) ? resp.hits.hits[0]._source : [];
-            });
         };
 
         const onChangeValue = async( val ) => {
