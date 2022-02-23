@@ -4,7 +4,7 @@
  */
  import { useBlockProps } from '@wordpress/block-editor';
  import { __ } from '@wordpress/i18n';
- import './autocomplete.scss';
+ import './resort.scss';
 
 function Resort({
     data = [],
@@ -38,24 +38,24 @@ function Resort({
 
     let resort = destructureResortData( data );
 
-    return ( <article {...useBlockProps.save()}>
-        <header className="fnugg-header">
+    return ( <article {...useBlockProps.save()} className={'dekode-resort'}>
+        <header className="dekode-resort-header">
             {resort.name}
         </header>
-        <main className="fnugg-resort-image">
+        <main className="dekode-resort-image">
             <img src={resort.image} />
-            <div className="fnugg-resort-image__desc">
+            <div className="dekode-resort-image__desc">
                 <div className="">{resort.condDesc}</div>
                 <div className="">{__( 'Opdaterd', textdomain ) + ': ' + formatDate( resort.lastUpdated )}</div>
             </div>
         </main>
-        <footer className="fnugg-conditions-grid">
-            <div className="fnugg-conditions-grid__cell">A</div>
-            <div className="fnugg-conditions-grid__cell fnugg-temperature">
+        <footer className="dekode-resort-conditions-grid">
+            <div className="dekode-resort-conditions-grid__cell">A</div>
+            <div className="dekode-resort-conditions-grid__cell dekode-resort-temperature">
                 {formatTemperature( resort.temperature )}
             </div>
-            <div className="fnugg-conditions-grid__cell">C</div>
-            <div className="fnugg-conditions-grid__cell">D</div>
+            <div className="dekode-resort-conditions-grid__cell">C</div>
+            <div className="dekode-resort-conditions-grid__cell">D</div>
         </footer>
     </article> );
 };

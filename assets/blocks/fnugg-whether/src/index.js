@@ -8,8 +8,8 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import json from '../block.json';
 import { __ } from '@wordpress/i18n';
-import Autocomplete from './autocomplete';
-import Resort from './Resort';
+import Autocomplete from './Autocomplete/Autocomplete';
+import Resort from './Resort/Resort';
 import { useBlockProps } from '@wordpress/block-editor';
 import { loadResortSuggestions, loadResortData } from './api';
 import { useState } from '@wordpress/element';

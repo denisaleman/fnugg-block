@@ -15,7 +15,7 @@
  import { __ } from '@wordpress/i18n';
  import './autocomplete.scss';
 
-function DekodeAutocomplete({
+function Autocomplete({
     label,
     id,
     value,
@@ -59,4 +59,4 @@ function DekodeAutocomplete({
     );
 };
 
-export default DekodeAutocomplete;
+export default Autocomplete;
