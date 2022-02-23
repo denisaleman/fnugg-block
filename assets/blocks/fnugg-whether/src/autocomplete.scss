@@ -1,0 +1,16 @@
+.dekode-autocomplete {
+    display: flex;
+    flex-direction: column;
+}
+
+.dekode-autocomplete__label {
+    font-size: 0.75em;
+}
+
+.dekode-autocomplete__input {
+    padding: 0.3em 0;
+    font-size: 1.5em;
+    border: none;
+    border-bottom: 1px solid rgb(37, 37, 37);
+    background-color: transparent;
+}

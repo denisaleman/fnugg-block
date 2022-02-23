@@ -12,11 +12,15 @@
  *     { value: 'second', label: 'Second' }
  *   ]
  */
+ import { __ } from '@wordpress/i18n';
+ import './autocomplete.scss';
 
 function DekodeAutocomplete({
     label,
     id,
     value,
+    placeholder,
+    textdomain = 'decode-autocomplete',
     onChange,
     options = []
 }) {
@@ -30,21 +34,23 @@ function DekodeAutocomplete({
     };
 
     return (
-        <div>
+        <div className="dekode-autocomplete">
             { /* Label for the block. */}
-            <label for={blockId}>
-                {label}
+            <label className="dekode-autocomplete__label" for={blockId}>
+                {__( label, textdomain )}
             </label>
 
             { /* Input field. */}
             <input
+                className="dekode-autocomplete__input"
                 list={blockId}
                 value={value}
                 onChange={onChangeValue}
+                placeholder={__( placeholder, textdomain )}
             />
 
             { /* List of all of the autocomplete options. */}
-            <datalist id={blockId}>
+            <datalist className="dekode-autocomplete__options-list" id={blockId}>
                 {options.map( ( option, index ) =>
                     <option value={option.value} label={option.label} />
                 )}

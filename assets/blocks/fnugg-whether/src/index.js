@@ -66,10 +66,9 @@ registerBlockType( name, {
 
         return (
             <div {...useBlockProps()}>
-                <h4>{__( 'Select a Resort', textdomain )}</h4>
-
                 <Autocomplete
-                    label='Attribute label'
+                    label='Select a Resort'
+                    placeholder='Just start typing...'
                     value={attributes.value}
                     onChange={onChangeValue}
                     options={suggestions}
