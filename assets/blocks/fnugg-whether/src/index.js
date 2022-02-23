@@ -36,6 +36,17 @@ registerBlockType( name, {
     edit: ({ attributes, setAttributes }) => {
         const [ suggestions, setSuggestions ] = useState([]);
         const [ isSelected, setIsSelected ] = useState( attributes.selected ?? false );
+        const debounce = ( func, delay ) => {
+            let timer;
+            return function() {
+                let self = this;
+                let args = arguments;
+                clearTimeout( timer );
+                timer = setTimeout( () => {
+                    func.apply( self, args );
+                }, delay );
+            };
+        };
 
         const loadResortSuggestions = async( search ) => {
             return await apiFetch({ path: `/fnugg/v1/suggest-autocomplete?q=${search}` }).then( ( resp ) => {
@@ -59,7 +70,7 @@ registerBlockType( name, {
                 setIsSelected( true );
                 attributesPayload = { ...attributesPayload, selected: true, resortData: await loadResortData( val ) };
             } else {
-                setSuggestions( await loadResortSuggestions( val ) );
+                debounce( async() => setSuggestions( await loadResortSuggestions( val ) ), 1000 )();
             }
             setAttributes( attributesPayload );
             console.log( attributesPayload );
