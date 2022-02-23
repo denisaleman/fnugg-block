@@ -13,15 +13,16 @@
  *   ]
  */
 
-function DekodeAutocomplete( {
-  label,
-  id,
-  value,
-  onChange,
-  options = [],
-} ) {
+function DekodeAutocomplete({
+    label,
+    id,
+    value,
+    onChange,
+    options = []
+}) {
+
     // Construct a unique ID for this block.
-    const blockId = `my-autocomplete-${ id }`;
+    const blockId = `my-autocomplete-${id}`;
 
     // Function to handle the onChange event.
     const onChangeValue = ( event ) => {
@@ -30,26 +31,26 @@ function DekodeAutocomplete( {
 
     return (
         <div>
-            { /* Label for the block. */ }
-            <label for={ blockId }>
-                { label }
+            { /* Label for the block. */}
+            <label for={blockId}>
+                {label}
             </label>
 
-            { /* Input field. */ }
+            { /* Input field. */}
             <input
-                list={ blockId }
-                value={ value }
-                onChange={ onChangeValue }
+                list={blockId}
+                value={value}
+                onChange={onChangeValue}
             />
 
-            { /* List of all of the autocomplete options. */ }
-            <datalist id={ blockId }>
-                { options.map( ( option, index ) =>
-                    <option value={ option.value } label={ option.label } />
-                ) }
+            { /* List of all of the autocomplete options. */}
+            <datalist id={blockId}>
+                {options.map( ( option, index ) =>
+                    <option value={option.value} label={option.label} />
+                )}
             </datalist>
         </div>
-	);
+    );
 };
 
 export default DekodeAutocomplete;
