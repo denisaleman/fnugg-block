@@ -64,6 +64,16 @@ class Search extends \WP_REST_Controller {
 		);
 	}
 
+	public function get_default_fields( $query ) {
+		return apply_filters( 'dekode_fnugg_rest_serch_default_source_fields', [
+			'name',
+			'images.image_1_1_l',
+			'conditions.combined.top.condition_description',
+			'last_updated',
+			'conditions.combined.top.temperature.value',
+		] );
+	}
+
 	/**
 	 * Retrieves a collection of search results.
 	 *
@@ -73,6 +83,10 @@ class Search extends \WP_REST_Controller {
 	 */
 	public function get_items( $request ) {
 		$query = $request->get_params();
+		$query = array_merge( $query, [ 'sourceFields' => implode( ',', $this->get_default_fields( $query ) ) ] );
+
+		//sourceFields=
+		//name,description,lifts.count,lifts.open,images.image_1_1_l,conditions.combined.top.condition_description,last_updated,conditions.combined.top.temperature.value
 
 		$client  = new Fnugg\HttpClient();
 		$proxy   = new Fnugg\CachingProxy( $client );
